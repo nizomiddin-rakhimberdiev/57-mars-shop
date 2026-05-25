@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <h1><a href="{% url 'profile' %}">{{ request.user.username }}</a></h1>
+        <a href="{% url 'logout' %}">Tizimdan chiqish</a>
+        <br><br>
+        <a href="{% url 'add_product' %}">Add product</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    <hr>
+    {% for p in products %}
+        <img width="100" src="{{ p.image.url }}" alt="">
+        <h3>{{ p.name }}</h3>
+    {% endfor %}
+</body>
+</html>
